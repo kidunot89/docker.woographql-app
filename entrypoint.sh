@@ -51,7 +51,8 @@ if [ ! -f "${PLUGINS_DIR}/wp-graphql-jwt-authentication/wp-graphql-jwt-authentic
         --activate --allow-root
 fi
 
-if [ ! -z "$INCLUDE_WPGRAPHIQL" ]; then
+# Install and activate WPGraphiQL
+if [[ -v "$INCLUDE_WPGRAPHIQL" ]]; then
     if [ ! -f "${PLUGINS_DIR}/wp-graphiql/wp-graphiql.php" ]; then
         wp plugin install \
             https://github.com/wp-graphql/wp-graphiql/archive/master.zip \
@@ -59,8 +60,14 @@ if [ ! -z "$INCLUDE_WPGRAPHIQL" ]; then
     fi
 fi
 
-# Activate WooGraphQL
-wp plugin activate wp-graphql-woocommerce --allow-root
+# Install and activate WooGraphQL
+if [ ! -f "${PLUGINS_DIR}/wp-graphql-woocommerce/wp-graphql-woocommerce.php" ]; then
+    wp plugin install \
+        https://github.com/wp-graphql/wp-graphql-woocommerce/archive/${WOOGRAPHQL_BRANCH:-master}.zip \
+        --activate --allow-root
+else
+    wp plugin activate wp-graphql-woocommerce --allow-root
+fi
 
 # Set pretty permalinks.
 wp rewrite structure '/%year%/%monthnum%/%postname%/' --allow-root
