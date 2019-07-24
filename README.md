@@ -1,6 +1,6 @@
 # Docker Build - WooGraphQL App
 Pre-configured WordPress installation w/ WooGraphQL and all necessary dependencies.
-*This image is hosted on [Docker Hub](https://cloud.docker.com/repository/docker/kidunot89/woographql-app)*
+*This image is hosted on [Docker Hub](https://hub.docker.com/r/kidunot89/woographql-app)*
 
 ## Required Environment Variables.
 - **DB_HOST** - Database host
