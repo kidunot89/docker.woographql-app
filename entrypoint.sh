@@ -3,6 +3,8 @@
 # Run WordPress docker entrypoint.
 . docker-entrypoint.sh 'apache2'
 
+set +u
+
 # Ensure mysql is loaded
 dockerize -wait tcp://${DB_HOST}:${DB_HOST_PORT:-3306} -timeout 1m
 
@@ -52,7 +54,7 @@ if [ ! -f "${PLUGINS_DIR}/wp-graphql-jwt-authentication/wp-graphql-jwt-authentic
 fi
 
 # Install and activate WPGraphiQL
-if [[ -v "$INCLUDE_WPGRAPHIQL" ]]; then
+if [[ ! -z "$INCLUDE_WPGRAPHIQL" ]]; then
     if [ ! -f "${PLUGINS_DIR}/wp-graphiql/wp-graphiql.php" ]; then
         wp plugin install \
             https://github.com/wp-graphql/wp-graphiql/archive/master.zip \

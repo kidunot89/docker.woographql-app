@@ -2,12 +2,10 @@
 # Pre-configured WordPress Installation w/ WooCommerce, WPGraphQL, WooGraphQL #
 # For testing only, use in production not recommended.                        #
 ###############################################################################
+ARG WP_VERSION
+ARG PHP_VERSION
 
-# Using the 'DESIRED_' prefix to avoid confusion with environment variables of the same name.
-ARG DESIRED_WP_VERSION
-ARG DESIRED_PHP_VERSION
-
-FROM wordpress:${DESIRED_WP_VERSION}-php${DESIRED_PHP_VERSION}-apache
+FROM wordpress:${WP_VERSION}-php${PHP_VERSION}-apache
 
 LABEL author=kidunot89
 LABEL author_uri=https://github.com/kidunot89
