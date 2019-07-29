@@ -1,7 +1,10 @@
 #!/bin/bash
 
 # Image variants
-declare -a variants=(
+variants=(
+    '5.2.2;7.3'
+    '5.2.2;7.2'
+    '5.2.2;7.1'
     '5.2;7.3'
     '5.2;7.2'
     '5.2;7.1'
@@ -19,8 +22,9 @@ declare -a variants=(
     '4.9;5.6'
 )
 
-for i in "${variants[@]}"; do
-    IFS=';' read -ra variant <<< "$i"
+build_image()
+{
+    IFS=';' read -ra variant <<< "$1"
 
     # Build tag
     tag="wp${variant[0]}-php${variant[1]}"
@@ -31,6 +35,12 @@ for i in "${variants[@]}"; do
         --build-arg WP_VERSION=${variant[0]} \
         --build-arg PHP_VERSION=${variant[1]} \
         .
+}
 
-done
-
+if [[ ! -z "$1" ]]; then
+    build_image "$1"
+else
+    for i in "${variants[@]}"; do
+        build_image "$i"
+    done
+fi

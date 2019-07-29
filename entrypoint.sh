@@ -36,7 +36,15 @@ fi
 
 # Install and activate WooCommerce
 if [ ! -f "${PLUGINS_DIR}/woocommerce/woocommerce.php" ]; then
-	wp plugin install woocommerce --activate --allow-root
+	wp plugin install woocommerce --activate --allow-root 
+    if [[ ! -z "$IMPORT_WC_PRODUCTS" ]]; then
+        echo "Installing & Activating WordPress Importer"
+        wp plugin install wordpress-importer --activate --allow-root
+        echo "Importing store products..."
+        wp import \
+            ${PLUGINS_DIR}/woocommerce/sample-data/sample_products.xml \
+            --authors=skip --allow-root
+    fi
 fi
 
 # Install and activate WPGraphQL
