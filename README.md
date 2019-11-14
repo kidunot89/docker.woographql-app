@@ -16,6 +16,8 @@ Pre-configured WordPress installation w/ WooGraphQL and all necessary dependenci
 ## Optional Environment Variables.
 - **INCLUDE_WPGRAPHIQL** - Whether or not to install and activate the [WPGraphiQL](https://github.com/wp-graphql/wp-graphiql) plugin.
 - **WOOGRAPHQL_BRANCH** - WooGraphQL target branch. *Ex. release-v0.2.0, develop, master, ...etc*
+- **CORE_BRANCH** - WPGraphQL target branch *Ex. develop, master, ...etc*
+- **JWT_AUTH_BRANCH** - WPGraphQL JWT Authentication target branch *Ex. master, ...etc*
 
 ## Example `docker-compose.yml`
 ```

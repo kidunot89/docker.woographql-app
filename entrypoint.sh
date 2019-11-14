@@ -42,14 +42,14 @@ fi
 # Install and activate WPGraphQL
 if [ ! -f "${PLUGINS_DIR}/wp-graphql/wp-graphql.php" ]; then
     wp plugin install \
-        https://github.com/wp-graphql/wp-graphql/archive/master.zip \
+        https://github.com/wp-graphql/wp-graphql/archive/${CORE_BRANCH-master}.zip \
         --activate --allow-root
 fi
 
 # Install and activate WPGraphQL JWT Authentication
 if [ ! -f "${PLUGINS_DIR}/wp-graphql-jwt-authentication/wp-graphql-jwt-authentication.php" ]; then
     wp plugin install \
-        https://github.com/wp-graphql/wp-graphql-jwt-authentication/archive/master.zip \
+        https://github.com/wp-graphql/wp-graphql-jwt-authentication/archive/${JWT_AUTH-master}.zip \
         --activate --allow-root
 fi
 
