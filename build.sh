@@ -2,6 +2,7 @@
 
 # Image variants
 declare -a variants=(
+    '5.3;7.4'
     '5.3;7.3'
     '5.3;7.2'
     '5.3;7.1'
