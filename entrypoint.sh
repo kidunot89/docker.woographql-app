@@ -36,7 +36,11 @@ fi
 
 # Install and activate WooCommerce
 if [ ! -f "${PLUGINS_DIR}/woocommerce/woocommerce.php" ]; then
-	wp plugin install woocommerce --activate --allow-root 
+	wp plugin install woocommerce --activate --allow-root
+    if [[ ! -z "$STRIPE_GATEWAY" ]]; then
+        echo "Installing & Activating WooCommerce-Gateway-Stripe"
+        wp plugin install woocommerce-gateway-stripe --activate
+    fi
     if [[ ! -z "$IMPORT_WC_PRODUCTS" ]]; then
         echo "Installing & Activating WordPress Importer"
         wp plugin install wordpress-importer --activate --allow-root
